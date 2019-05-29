@@ -1,0 +1,117 @@
+{
+	"plugin_id": "soundtouch",
+  "name_fr": "Bose Soundtouch",
+	"icon": "bosesoundtouch.png",
+	"version": "1.2",
+	"creation_date": "2018-11-29",
+	"modification_date": "2018-12-10",
+	"author": "<a href='http://www.aussitot.net/' target='_blank'>@havok</a>",
+	"description_fr": "Pilotage des enceintes <a href='https://www.bose.fr/fr_fr/products/speakers/smart_home/soundtouch_family.html' target='_blank'>BOSE Soundtouch</a>",
+	"description_en": "",
+	"description_es": "",
+	"description_it": "",
+	"description_de": "",
+  "forum_link": "https://forum.eedomus.com/viewtopic.php?f=50&t=7831",
+  "parameters":
+  [
+		{
+			"parameter": "bosesoundtouch_ip",
+			"description": "Adresse IP de votre enceinte Bose Soundtouch",
+			"xtype": "textfield",
+			"default_value": "",
+			"field": "width:130, allowBlank:false"
+    }
+  ],
+	  "devices":
+  [
+		{
+			"device_id": "bose_soundtouch",
+			"module_id": "41",
+			"type": "http",
+			"name_fr": "plugin.name",
+			"icon": "bosesoundtouch.png",
+			"value_type": "list",
+			"utilisation_id": "43",
+			"parameters":
+			{
+				"VAR1": "plugin.parameters.bosesoundtouch_ip",
+				"value_type": "list",
+				"ignore_errors": 3
+			},
+			"values":
+			[
+				{ "value": "0", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"press\" sender=\"Gabbo\">POWER</key>\n<key state=\"release\" sender=\"Gabbo\">POWER</key>", "description": "ON /OFF", "icon": "badge.png" },
+				{ "value": "1", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"press\" sender=\"Gabbo\">PLAY</key>", "description": "PLAY", "icon": "play.png" },
+				{ "value": "2", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"press\" sender=\"Gabbo\">PAUSE</key>", "description": "PAUSE", "icon": "pause.png" },
+				{ "value": "3", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"press\" sender=\"Gabbo\">MUTE</key>", "description": "MUTE", "icon": "music_c2.png" },
+				{ "value": "11", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"press\" sender=\"Gabbo\">NEXT_TRACK</key>", "description": "PISTE SUIVANTE", "icon": "audio_next.png" },
+				{ "value": "12", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"press\" sender=\"Gabbo\">PREV_TRACK</key>", "description": "PISTE PRECEDENTE", "icon": "audio_prev.png" },
+				{ "value": "30", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">PRESET_1</key>", "description": "PRESET 1", "icon": "soundtouch_preset1.png" },
+				{ "value": "31", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">PRESET_2</key>", "description": "PRESET 2", "icon": "soundtouch_preset2.png" },
+				{ "value": "32", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">PRESET_3</key>", "description": "PRESET 3", "icon": "soundtouch_preset3.png" },
+				{ "value": "33", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">PRESET_4</key>", "description": "PRESET 4", "icon": "soundtouch_preset4.png" },
+				{ "value": "34", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">PRESET_5</key>", "description": "PRESET 5", "icon": "soundtouch_preset5.png" },
+				{ "value": "35", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">PRESET_6</key>", "description": "PRESET 6", "icon": "soundtouch_preset6.png" },
+				{ "value": "36", "http_url": "http://[VAR1]:8090/key", "http_type": "POST", "http_params": "<key state=\"release\" sender=\"Gabbo\">AUX_INPUT</key>", "description": "AUX", "icon": "soundtouch_aux.png" }
+			]
+		},
+		{
+			"device_id": "bs_volume",
+			"parent_id": "bose_soundtouch",
+			"module_id": "41",
+			"type": "http",
+			"name_fr": "plugin.name - volume",
+			"icon": "volume.png",
+			"value_type": "list",
+			"utilisation_id": "43",
+			"parameters":
+			{
+				"VAR1": "plugin.parameters.bosesoundtouch_ip",
+				"value_type": "list",
+				"ignore_errors": 3
+			},
+			"values":
+			[
+				{ "value": "10", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>10</volume>", "description": "VOLUME 10%", "icon": "volume.png" },
+				{ "value": "20", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>20</volume>", "description": "VOLUME 20%", "icon": "volume.png" },
+				{ "value": "30", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>30</volume>", "description": "VOLUME 30%", "icon": "volume.png" },
+				{ "value": "40", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>40</volume>", "description": "VOLUME 40%", "icon": "volume.png" },
+				{ "value": "50", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>50</volume>", "description": "VOLUME 50%", "icon": "volume.png" },
+				{ "value": "60", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>60</volume>", "description": "VOLUME 60%", "icon": "volume.png" },
+				{ "value": "70", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>70</volume>", "description": "VOLUME 70%", "icon": "volume.png" },
+				{ "value": "80", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>80</volume>", "description": "VOLUME 80%", "icon": "volume.png" },
+				{ "value": "90", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>90</volume>", "description": "VOLUME 90%", "icon": "volume.png" },
+				{ "value": "100", "http_url": "http://[VAR1]:8090/volume", "http_type": "POST", "http_params": "<volume>100</volume>", "description": "VOLUME 100%", "icon": "volume.png" }
+			]
+		},
+		{
+			"device_id": "bs_now_played",
+			"parent_id": "bose_soundtouch",
+			"module_id": "51",
+			"type": "http",
+			"name_fr": "plugin.name - etat",
+			"icon": "bosesoundtouch.png",
+			"value_type": "list",
+			"utilisation_id": "35",
+			"parameters":
+			{
+				"VAR1": "plugin.parameters.bosesoundtouch_ip",
+				"value_type": "list",
+				"ignore_errors": 3,
+				"RAW_URL": "http://[VAR1]:8090/now_playing",
+				"RAW_XPATH": "/nowPlaying/@source",
+				"POLLING": "2"
+			},
+			"values":
+			[
+				{ "value": "AUX", "description": "AUX", "icon": "soundtouch_aux.png" },
+				{ "value": "BLUETOOTH", "description": "BLUETOOTH", "icon": "soundtouch_bluetooth.png" },
+				{ "value": "DEEZER", "description": "DEEZER", "icon": "soundtouch_deezer.png" },
+				{ "value": "SPOTIFY", "description": "SPOTIFY", "icon": "soundtouch_spotify.png" },
+				{ "value": "STORED_MUSIC", "description": "STORED_MUSIC", "icon": "computer.png" },
+				{ "value": "TUNEIN", "description": "RADIO", "icon": "record.png" },
+				{ "value": "STANDBY", "description": "OFF", "icon": "default_off.png" }
+			]
+		}
+  ]
+}
